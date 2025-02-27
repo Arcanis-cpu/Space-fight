@@ -1,0 +1,303 @@
+body{
+    scrollbar-width: 10px;
+    scrollbar-color: purple;
+}
+#canvas{
+    display: none;
+}
+#spacefight{
+    width:710px;
+}
+#stock, #canvaShenanigan, #boss3, #animations{
+    display: none;
+}
+#exit{
+    font-size: 18px;
+    height: 80px;
+    width: 120px;
+    padding: 12px;
+}
+#fullScreen{
+    font-size: 18px;
+    height: 80px;
+    width: 120px;
+    padding: 12px;
+}
+.range{
+    width: 150px;
+    height: 10px;
+    margin-top: 0px;
+}
+#parameters{
+    font-size: 14px;
+    margin-top: 30px;
+    display: none;
+    background-color: rgb(79, 79, 79);
+    border-radius: 20px;
+    padding: 6px;
+    border: 3px solid black;
+}
+input:hover{
+    background-color: rgb(185, 185, 185);
+}
+input{
+    padding: 2px;
+    border-radius: 10px;
+    width: 35px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 16px;
+    
+    background-color: whitesmoke;
+}
+body{
+    background-color: rgb(41, 1, 79);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    justify-content: center;
+}
+canvas{
+    background: rgb(20, 6, 20);
+    border-radius: 5px;
+    border: 5px solid black;
+}
+#welcome{
+    display: initial;
+}
+#ingameButtons{
+    margin-top: 10px;
+    text-align: center;
+}
+#exit{
+    margin: 0%;
+    width: 200px;
+    height: 20px;
+    padding: 0%;
+}
+#exit::before{
+    margin: 0%;
+    width: 200px;
+    height: 20px;
+    padding: 13px;
+}
+#exit::after{
+    margin: 0%;
+    width: 200px;
+    height: 20px;
+    padding: 10px;
+}
+#fullScreen{
+    margin: 0%;
+    margin-left: 30px;
+    width: 200px;
+    height: 20px;
+    padding: 0%;
+}
+#fullScreen::before{
+    margin: 0%;
+    width: 200px;
+    height: 20px;
+    padding: 13px;
+}
+#fullScreen::after{
+    margin: 0%;
+    width: 200px;
+    height: 20px;
+    padding: 10px;
+}
+button{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:  rgb(120, 70, 255);;
+    font-weight: 600;
+    font-size: 30px;
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 300px;
+    height: 70px;
+    filter: drop-shadow(5px 5px rgb(45, 0, 47));
+}
+button:hover{
+    color: whitesmoke;
+}
+button::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(purple, blue,purple, blue, purple, blue, purple);
+    padding:3px;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 15px;
+}
+button::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: rgb(96, 0, 128);
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 15px;
+}
+.stylish{
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgb(73, 6, 135, 0.2);
+}
+.title{
+    color: rgb(176, 92, 255);
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    filter: drop-shadow(5px 5px rgb(45, 0, 47));
+}
+p{
+    color: rgb(18, 0, 35);
+}
+.level{
+    margin: 15px;
+    width: 140px;
+    height: 60px;
+}
+#campaignMenu{
+    display: none;
+}
+#restart{
+    display: none;
+}
+#restart{
+    margin: 0%;
+    margin-left: 30px;
+    width: 200px;
+    height: 20px;
+    padding: 0%;
+}
+#restart::before{
+    margin: 0%;
+    width: 200px;
+    height: 20px;
+    padding: 13px;
+}
+#restart::after{
+    margin: 0%;
+    width: 200px;
+    height: 20px;
+    padding: 10px;
+}
+#restart{
+    font-size: 18px;
+}
+#background{
+    width: 1600px;
+    z-index: -1;
+    display: none;
+    translate: 0% 100%;
+    filter: blur(0.3rem);
+    margin-left: 0%;
+    border-top: 10px solid rgb(41, 1, 79);
+    border-bottom: 10px solid rgb(41, 1, 79);
+}
+#ingamebuttons{
+    margin-top: 10px;
+}
+.info:hover{
+    display: none;
+    text-align: center;
+    background-color: rgba(100,100,100,0.6);
+    border-radius: 15px;
+    color: rgb(83, 0, 83);
+    font-size: 20px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+#infoC:hover{
+    translate: 50% 10%;
+    content: "Your speed, your health and your damage may vary.";
+}
+.info{
+    display: none;
+}
+#shopMenu{
+    display: none;
+}
+#shopMenu{
+    text-align: center;
+    display: none;
+}
+#money{
+    text-align: center;
+    color: rgb(164, 69, 201);
+    font-size: 40px;
+    margin-top: 1%;
+}
+.cost{
+    color: rgb(164, 69, 201);
+    font-size: 28px;
+    margin-top: 18px;
+}
+.buyable{
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.buy{
+    height: 45px;
+    width: 160px;
+    margin: 3px;
+}
+.buy:before{
+    height: 45px;
+    width: 160px;
+}
+.buy:after{
+    height: 45px;
+    width: 160px;
+}
+#skins{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+.item{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 85px;
+    width: 180px;
+}
+.itemTitle{
+    color: rgb(164, 69, 201);
+    font-size: 34px;
+    margin-bottom: 0px;
+    margin-top: 18px;
+    padding: 2px;
+    border-radius: 15px;
+    background-color: rgb(73, 6, 135, 0.2);
+}
+#exitShop{
+    position: absolute;
+    top: 2.8%;
+    left: max(35px, 5%);
+}
+#exit3{
+    height: 45px;
+    width: 160px;
+}
+#exit3:before{
+    height: 45px;
+    width: 160px;
+}
+#exit3:after{
+    height: 45px;
+    width: 160px;
+}
+#fullScreen{
+    display: none;
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacefight</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="simplifiedredskin.png">
+    <script src="main.js" defer></script>
+    <script src="player.js" defer></script>
+    <script src="bot.js" defer></script>
+    <script src="Storage.js"></script>
+</head>
+<body>
+    <img src="backgroundSpace.png" id="background">
+    <div id="welcome">
+        <div id="titleDiv" class="stylish">
+            <img src="spacefight.png" id="spacefight">
+            <!--<h2 class="title"></h2>-->
+        </div>
+        <br>
+        <div class="stylish">
+            <button id="1player" onclick="toggleStart(1, 0)">Single player</button>
+            <br>
+            <button id="2players" onclick="toggleStart(2, 0)">Two players</button>
+            <br id="player222222">
+            <button id="boss" onclick="Shop()">Shop</button>
+            <br id="boss">
+            <button id="boss2" onclick="toggleStart(1, 2)">Team Fight</button>
+            <br id="boss2">
+            <button id="boss3" onclick="toggleStart(1, 3)">Skilled Fight</button>
+            <br id="boss3">
+            <button id="campaign" onclick="campaignMenu()">Campaign</button>
+            <br id="save1">
+            <button id="save" onclick="store()">Save</button>
+        </div>
+        <br>
+        <div class="stylish">
+            <p>press "r", "t", "f", "y" or select a gamemode to start</p>
+        </div>    
+    </div>
+    <div id="canvaShenanigan">
+        <canvas id="canva">
+
+        </canvas>
+        <div id="ingameButtons">
+            <button onclick="exit()" id="exit">return to menu</button>
+            <button class="downButton" onclick="fullScreen()" id="fullScreen">Full screen</button>
+            <button id="restart" class="downButton" onclick="retry()">retry</button>
+        </div>
+    </div>
+    <div id="parameters">
+        <label for="speed">Speed</label>
+        <input type="number" id ="speed" value=0.8 max="10">
+        <label for="bspeed">bullet Speed</label>
+        <input type="number" id ="bspeed" value=0.5 max="10">
+        <label for="dmg">Damage</label>
+        <input type="number" id ="dmg" value=2 max="10000">
+        <label for="regen">Regeneration</label>
+        <input type="number" id ="regen" value=1 max="100">
+        <label for="autoF">Auto Fire (0/1)</label>
+        <input type="number" id ="autoF" value=1 max="1">
+        <label for="rec">Recoil</label>
+        <input type="number" id ="rec" value=0.2 max="10">
+        <label for="Fri">Friction</label>
+        <input type="number" id ="Fri" value=0.99 max="1.1">
+        <label for="BD">Border Damage</label>
+        <input type="number" id ="BD" value=0 max="100">
+        <label for="botD">Bot Damage</label>
+        <input type="number" id ="botD" value=0.3 max="10">
+        <label for="PDR">Players Dead required (1/2)</label>
+        <input type="number" id ="PDR" value=2 min="1" max="2">
+    </div>
+    <div id="campaignMenu">
+        <div class="stylish">
+            <h4 class="title">Levels</h4><p id="infoC" class="info">?</p>
+        </div>
+        <div class="stylish">
+            <button class="level" id="l1" onclick="level1()">1</button>
+            <button class="level" id="l2" onclick="level2()">2</button>
+            <button class="level" id="l3" onclick="level3()">3</button>
+            <button class="level" id="l4" onclick="level4()">4</button>
+            <button class="level" id="l5" onclick="level5()">5</button>
+            <br class="levelseperator">
+            <button class="level" id="l6" onclick="level6()">6</button>
+            <button class="level" id="l7" onclick="level7()">7</button>
+            <button class="level" id="l8" onclick="level8()">8</button>
+            <button class="level" id="l9" onclick="level9()">9</button>
+            <button class="level" id="l10" onclick="level10()">10</button>
+            <br class="levelseperator">
+            <button class="level" id="l11" onclick="level11()">11</button>
+            <button class="level" id="l12" onclick="level12()">12</button>
+            <button class="level" id="l13" onclick="level13()">13</button>
+            <button class="level" id="l14" onclick="level14()">14</button>
+            <button class="level" id="l15" onclick="level15()">15</button>
+            <br class="levelseperator">
+            <button class="level" id="l16" onclick="level16()">16</button>
+            <button class="level" id="l17" onclick="level17()">17</button>
+            <button class="level" id="l18" onclick="level18()">18</button>
+            <button class="level" id="l19" onclick="level19()">19</button>
+            <button class="level" id="l20" onclick="level20()">20</button>            
+        </div>
+        <div>
+            <button onclick="exit()" id="exit2">return to menu</button>
+        </div>
+    </div>
+    <div id="shopMenu">
+        <div id="exitShop">
+            <button onclick="exit()" id="exit3">exit</button>
+        </div>
+        <h4 id="money" class="stylish"></h4>
+        <div class="stylish" id="skins">
+            <div class="item" id="item0">
+                <img src="fanatic2.png" alt="Fanatic skin" class="buyable" id="player0">
+                <p class="itemTitle">Fanatic</p>
+                <p class="cost">cost: 500 coins</p>
+                <button onclick="Interact(0, 300)" class="buy" id="buy00">buy</button>
+            </div>
+            <div class="item" id="item1">
+                <img src="simplifiedpurpleskin2.png" alt="Rogue skin" class="buyable" id="player1">
+                <p class="itemTitle">Rogue</p>
+                <p class="cost">cost: 800 coins</p>
+                <button onclick="Interact(1, 800)" class="buy" id="buy10">buy</button>
+            </div>
+            <div class="item" id="item2">
+                <img src="simplifiedgreenskin2.png" alt="toxicskin" class="buyable" id="player2">
+                <p class="itemTitle">Toxic</p>
+                <p class="cost">cost: 1200 coins</p>
+                <button onclick="Interact(2, 1200)" class="buy" id="buy20">buy</button>
+            </div>
+            <div class="item" id="item4">
+                <img src="bananaskin.png" alt="Banana skin" class="buyable" id="player4">
+                <p class="itemTitle">Banana</p>
+                <p class="cost">cost: 3000 coins</p>
+                <button onclick="Interact(4, 3000)" class="buy" id="buy40">buy</button>
+            </div>
+            <div class="item" id="item5">
+                <img src="oceanskin.png" alt="Ocean skin" class="buyable" id="player5">
+                <p class="itemTitle">Ocean</p>
+                <p class="cost">cost: 4000 coins</p>
+                <button onclick="Interact(5, 4000)" class="buy" id="buy50">buy</button>
+            </div>
+            <div class="item" id="item6">
+                <img src="sunriseskin.png" alt="Ocean skin" class="buyable" id="player6">
+                <p class="itemTitle">Sunrise</p>
+                <p class="cost">cost: 4000 coins</p>
+                <button onclick="Interact(6, 4000)" class="buy" id="buy60">buy</button>
+            </div>
+            <div class="item" id="item8">
+                <img src="Roseskin.png" alt="Rose skin" class="buyable" id="player8">
+                <p class="itemTitle">Rose</p>
+                <p class="cost">cost: 4000 coins</p>
+                <button onclick="Interact(8, 4000)" class="buy" id="buy80">buy</button>
+            </div>
+            <div class="item" id="item9">
+                <img src="Christmas0.png" alt="christmas skin" class="buyable" id="player90">
+                <div id="animations">
+                    <img src="Christmas1.png" alt="christmas skin" class="buyable" id="player91">
+                    <img src="Christmas2.png" alt="christmas skin" class="buyable" id="player92">
+                    <img src="Christmas3.png" alt="christmas skin" class="buyable" id="player93">
+                    <img src="Christmas4.png" alt="christmas skin" class="buyable" id="player94">
+                </div>
+                <p class="itemTitle">Christmas</p>
+                <p class="cost">cost: 4500 coins</p>
+                <button onclick="Interact(9, 4500)" class="buy" id="buy90">buy</button>
+            </div>
+            <div class="item" id="item10">
+                <img src="road0.png" alt="road skin" class="buyable" id="player100">
+                <div id="animations">
+                    <img src="road1.png" alt="road skin" class="buyable" id="player101">
+                    <img src="road2.png" alt="road skin" class="buyable" id="player102">
+                    <img src="road3.png" alt="road skin" class="buyable" id="player103">
+                    <img src="road4.png" alt="road skin" class="buyable" id="player104">
+                    <img src="road5.png" alt="road skin" class="buyable" id="player105">
+                    <img src="road6.png" alt="road skin" class="buyable" id="player106">
+                    <img src="road7.png" alt="road skin" class="buyable" id="player107">
+                    <img src="road8.png" alt="road skin" class="buyable" id="player108">
+                    <img src="road9.png" alt="road skin" class="buyable" id="player109">
+                    <img src="road10.png" alt="road skin" class="buyable" id="player1010">
+                    <img src="road11.png" alt="road skin" class="buyable" id="player1011">
+                </div>
+                <p class="itemTitle">Highway</p>
+                <p class="cost">cost: 4500 coins</p>
+                <button onclick="Interact(10, 4500)" class="buy" id="buy100">buy</button>
+            </div>
+            <div class="item" id="item7">
+                <img src="duneskin.png" alt="cosmos skin" class="buyable" id="player7">
+                <div id="animations">
+                    <img src="duneskincontrast0.png" alt="dune skin" class="buyable" id="player70">
+                    <img src="duneskincontrast1.png" alt="dune skin" class="buyable" id="player71">
+                    <img src="duneskincontrast2.png" alt="dune skin" class="buyable" id="player72">
+                    <img src="duneskincontrast3.png" alt="dune skin" class="buyable" id="player73">
+                    <img src="duneskincontrast4.png" alt="dune skin" class="buyable" id="player74">
+                    <img src="duneskincontrast5.png" alt="dune skin" class="buyable" id="player75">
+                    <img src="duneskincontrast6.png" alt="dune skin" class="buyable" id="player76">
+                    <img src="duneskincontrast7.png" alt="dune skin" class="buyable" id="player77">
+                    <img src="duneskincontrast8.png" alt="dune skin" class="buyable" id="player78">
+                </div>
+                <p class="itemTitle">Dune</p>
+                <p class="cost">cost: 5000 coins</p>
+                <button onclick="Interact(7, 5000)" class="buy" id="buy70">buy</button>
+            </div>
+            <div class="item" id="item11">
+                <img src="rainbowskin0.png" alt="rainbow skin" class="buyable" id="player110">
+                <div id="animations">
+                    <img src="rainbowskin1.png" alt="rainbow skin" class="buyable" id="player111">
+                    <img src="rainbowskin2.png" alt="rainbow skin" class="buyable" id="player112">
+                    <img src="rainbowskin3.png" alt="rainbow skin" class="buyable" id="player113">
+                    <img src="rainbowskin4.png" alt="rainbow skin" class="buyable" id="player114">
+                    <img src="rainbowskin5.png" alt="rainbow skin" class="buyable" id="player115">
+                    <img src="rainbowskin6.png" alt="rainbow skin" class="buyable" id="player116">
+                    <img src="rainbowskin7.png" alt="rainbow skin" class="buyable" id="player117">
+                    <img src="rainbowskin8.png" alt="rainbow skin" class="buyable" id="player118">
+                    <img src="rainbowskin9.png" alt="rainbow skin" class="buyable" id="player119">
+                    <img src="rainbowskin10.png" alt="rainbow skin" class="buyable" id="player1110">
+                    <img src="rainbowskin11.png" alt="rainbow skin" class="buyable" id="player1111">
+                    <img src="rainbowskin12.png" alt="rainbow skin" class="buyable" id="player1112">
+                    <img src="rainbowskin13.png" alt="rainbow skin" class="buyable" id="player1113">
+                    <img src="rainbowskin14.png" alt="rainbow skin" class="buyable" id="player1114">
+                    <img src="rainbowskin15.png" alt="rainbow skin" class="buyable" id="player1115">
+                    <img src="rainbowskin16.png" alt="rainbow skin" class="buyable" id="player1116">
+                    <img src="rainbowskin17.png" alt="rainbow skin" class="buyable" id="player1117">
+                </div>
+                <p class="itemTitle">Rainbow</p>
+                <p class="cost">cost: 6000 coins</p>
+                <button onclick="Interact(11, 6000)" class="buy" id="buy110">buy</button>
+            </div>
+            <div class="item" id="item12">
+                <img src="poopooskin0.png" alt="poopoo skin" class="buyable" id="player120">
+                <div id="animations">
+                    <img src="poopooskin1.png" alt="poopoo skin" class="buyable" id="player121">
+                    <img src="poopooskin2.png" alt="poopoo skin" class="buyable" id="player122">
+                    <img src="poopooskin3.png" alt="poopoo skin" class="buyable" id="player123">
+                </div>
+                <p class="itemTitle">Poopoo</p>
+                <p class="cost">cost: 7770 coins</p>
+                <button onclick="Interact(12, 7770)" class="buy" id="buy120">buy</button>
+            </div>
+            <div class="item" id="item13">
+                <img src="spirit0.png" alt="spirit skin" class="buyable" id="player130">
+                <div id="animations">
+                    <img src="spirit1.png" alt="spirit skin" class="buyable" id="player131">
+                    <img src="spirit2.png" alt="spirit skin" class="buyable" id="player132">
+                    <img src="spirit3.png" alt="spirit skin" class="buyable" id="player133">
+                </div>
+                <p class="itemTitle">Spirit</p>
+                <p class="cost">cost: 8000 coins</p>
+                <button onclick="Interact(13, 8000)" class="buy" id="buy130">buy</button>
+            </div>
+            <div class="item" id="item14">
+                <img src="heart0.png" alt="heart skin" class="buyable" id="player140">
+                <div id="animations">
+                    <img src="heart0.png" alt="heart skin" class="buyable" id="player141">
+                    <img src="heart0.png" alt="heart skin" class="buyable" id="player142">
+                    <img src="heart0.png" alt="heart skin" class="buyable" id="player143">
+                    <img src="heart1.png" alt="heart skin" class="buyable" id="player144">
+                    <img src="heart2.png" alt="heart skin" class="buyable" id="player145">
+                    <img src="heart1.png" alt="heart skin" class="buyable" id="player146">
+                </div>
+                <p class="itemTitle">Heart</p>
+                <p class="cost">cost: 10 000 coins</p>
+                <button onclick="Interact(14, 10000)" class="buy" id="buy140">buy</button>
+            </div>
+            <div class="item" id="item15">
+                <img src="Shiny0.png" alt="shiny skin" class="buyable" id="player15">
+                <p class="itemTitle">Shiny</p>
+                <p class="cost">cost: 12 000 coins</p>
+                <button onclick="Interact(15, 12000)" class="buy" id="buy150">buy</button>
+            </div>
+            <div class="item" id="item3">
+                <img src="cosmosskin0.png" alt="cosmos skin" class="buyable" id="player30">
+                <div id="animations">
+                    <img src="cosmosskin1.png" alt="cosmos skin" class="buyable" id="player31">
+                    <img src="cosmosskin2.png" alt="cosmos skin" class="buyable" id="player32">
+                    <img src="cosmosskin3.png" alt="cosmos skin" class="buyable" id="player33">
+                    <img src="cosmosskin4.png" alt="cosmos skin" class="buyable" id="player34">
+                </div>
+                <p class="itemTitle">Cosmos</p>
+                <p class="cost">cost: 20000 coins</p>
+                <button onclick="Interact(3, 20000)" class="buy" id="buy30">buy</button>
+            </div>
+        </div>
+    </div>
+    <div id="stock">
+        <img src="simplifiedpurpleskin.png" id="player-1" alt="">
+        <img src="soucoupe volante-2.png" id="bot">
+        <!--<img src="soucoupe volante.png" id="bot2">
+        <img src="ennemy1.png" id="e1">
+        <img src="ennemy2.png" id="e2">
+        <img src="ennemy3.png" id="e3">
+        <img src="ennemy4.png" id="e4">
+        <img src="flash1.png" id="flash">
+        -->
+        <img src="simplifiedyellowskin.png" id="flash">
+        <img src="simplifiedblueskin.png" id="blue">
+        <img src="simplifiedredskin.png" id="purple">
+        <img src="simplifiedgreenskin.png" id="green">
+        <img src="simplifiedorangeskin.png" id="orange">
+        <img src="shadowskin.png" id="shadow">
+        <img src="canon.png" id="canon">
+        <img src="deathstar2.png" id="deathstar">
+        <img src="You died.png" id="youdied">
+    </div>
+</body>
+</html>
